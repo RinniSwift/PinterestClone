@@ -35,6 +35,24 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.image.image = images[indexPath.row]
         return cell
     }
-    
-    
+}
+
+// MARK: Flow Layout Delegate
+/*
+    able to customize the collection view
+    add line spacing (spacing between cells)
+    add insets       (spacing between cell to the bounds
+    create grids
+ */
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let numOfColumns: CGFloat = 2
+        let width = collectionView.frame.size.width
+        let xInsets: CGFloat = 10
+        let cellSpacing: CGFloat = 5
+        let image = images[indexPath.row]
+        let height = image?.size.height
+        
+        return CGSize(width: (width / numOfColumns) - (xInsets + cellSpacing), height: (width / numOfColumns) - (xInsets + cellSpacing))
+    }
 }
